@@ -4,5 +4,5 @@
 <br>
 <h4>Vendors at our Market:</h4>
 <% @market.vendors.each do |vendor| %>
-  <%= link_to "#{vendor.name}", "vendors/#{vendor.id}" %> <br>
+  <%= link_to "#{vendor.name}", "/vendors/#{vendor.id}" %> <br>
 <% end %>
