@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   get "/markets/:id", to: "markets#show"
 
   get "/vendors/:id", to: "vendors#show"
+
+  post "market_vendors/:market_id/:vendor_id", to: "market_vendors#create"
 end

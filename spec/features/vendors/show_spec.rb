@@ -47,12 +47,29 @@ RSpec.describe "Vendors Show", type: :feature do
     fill_in :city, with: "Albuquerque"
     fill_in :name, with: "Nob"
     click_button "Search for Markets"
-    
+
     expect(current_path).to eq("/vendors/55823")
 
     expect(page).to_not have_content("Nob Hill Growers' Market")
     expect(page).to have_content("Cannot search city without state.")
+  end
 
+  it "can search for markets" do
+    visit "/markets/327794"
+    expect(page).to_not have_content("The Charcuterie Corner")
 
+    visit "/vendors/55823"
+
+    fill_in :state, with: "New Mexico"
+    fill_in :city, with: "Albuquerque"
+    fill_in :name, with: "Nob"
+    click_button "Search for Markets"
+
+    click_button "Add Market"
+
+    expect(page).to have_content("Vendor was added to market")
+
+    visit "/markets/327794"
+    expect(page).to have_content("The Charcuterie Corner")
   end
 end
