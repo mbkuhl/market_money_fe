@@ -13,7 +13,7 @@
         <td><%= market.name %></td>
         <td><%= market.city %></td>
         <td><%= market.state %></td>
-        <td><%= button_to "More Info", "markets/#{market.id}" %></td>
+        <td><%= button_to "More Info", "/markets/#{market.id}", method: :get %></td>
       </tr>
     </div>
     <% end %>

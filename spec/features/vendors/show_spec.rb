@@ -31,8 +31,28 @@ RSpec.describe "Vendors Show", type: :feature do
     fill_in :name, with: "Nob"
     click_button "Search for Markets"
     expect(current_path).to eq("/vendors/55823")
-save_and_open_page
+
     expect(page).to have_content("Nob Hill Growers' Market")
     click_link "Nob Hill Growers' Market"
+    expect(current_path).to eq("/markets/327794")
+    expect(page).to have_content("Lead & Morningside SE")
+  end
+
+  it "Doesnt allow city search without state" do
+    visit "/vendors/55823"
+    expect(page).to have_content("Search for Markets to Add")
+    expect(page).to_not have_content("Nob Hill Growers' Market")
+    expect(page).to_not have_content("Cannot search city without state.")
+
+    fill_in :city, with: "Albuquerque"
+    fill_in :name, with: "Nob"
+    click_button "Search for Markets"
+    
+    expect(current_path).to eq("/vendors/55823")
+
+    expect(page).to_not have_content("Nob Hill Growers' Market")
+    expect(page).to have_content("Cannot search city without state.")
+
+
   end
 end

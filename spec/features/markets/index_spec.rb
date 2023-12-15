@@ -27,6 +27,8 @@ RSpec.describe "Markets Index" do
       click_button("More Info")
     end
     expect(current_path).to eq('/markets/322458')
+    expect(page).to have_content("1400 U Street NW")
+
 
     visit "/markets"
 
@@ -34,6 +36,8 @@ RSpec.describe "Markets Index" do
       click_button("More Info")
     end
     expect(current_path).to eq('/markets/331074')
+    expect(page).to have_content("Burnsville, North Carolina 28714")
+
 
   end
 end

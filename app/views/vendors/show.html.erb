@@ -10,12 +10,15 @@
 
 <p>Search for Markets to Add</p>
  <%= form_with method: :get, local: true do |f| %>  
-    <%=  f.text_field :name, value: "Name" %>
-    <%=  f.text_field :city, value: "City"%>
-    <%= f.text_field :state, value: "State" %>
+    <%=  f.text_field :name, placeholder: "Name" %>
+    <%=  f.text_field :city, placeholder: "City"%>
+    <%= f.text_field :state, placeholder: "State" %>
     <%= f.submit "Search for Markets" %>
   <% end %>
   <br>
+  <% if flash.now[:notice] %>
+    <p><%= "#{flash.notice}" %></p>
+  <% end %>
   <% if @markets %>
   <%= "#{@markets.count} Search Results for " %>
   <%= "name=#{@name}" if @name %><%= ", " if @name && @city %>

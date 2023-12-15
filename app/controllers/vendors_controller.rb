@@ -4,7 +4,7 @@ class VendorsController <ApplicationController
     vf = VendorsFacade.new
     @vendor = vf.vendor(params[:id])
     if params[:commit]
-      if params[:city] && !params[:state]
+      if params[:city] && params[:state] == ""
         flash[:notice] = "Cannot search city without state."
         render :show
       else
