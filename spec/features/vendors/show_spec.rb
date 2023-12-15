@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Vendors Show" do
+RSpec.describe "Vendors Show", type: :feature do
 
   it 'will have a "more info" button next to each market that takes me to the market show page' do
     visit "/vendors/55823"
@@ -23,16 +23,15 @@ RSpec.describe "Vendors Show" do
 
   it "can search for markets" do
     visit "/vendors/55823"
-    expect(page).to have_content("Search for markets to Add")
+    expect(page).to have_content("Search for Markets to Add")
     expect(page).to_not have_content("Nob Hill Growers' Market")
 
     fill_in :state, with: "New Mexico"
-    fill_in :city, with: "Albequerque"
+    fill_in :city, with: "Albuquerque"
     fill_in :name, with: "Nob"
-
     click_button "Search for Markets"
     expect(current_path).to eq("/vendors/55823")
-
+save_and_open_page
     expect(page).to have_content("Nob Hill Growers' Market")
     click_link "Nob Hill Growers' Market"
   end

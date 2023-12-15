@@ -7,3 +7,25 @@
 <p>Credit Accepted?: <%= @vendor.credit_accepted %></p>
 <br>
 <p>Description: <%= @vendor.description %></p>
+
+<p>Search for Markets to Add</p>
+ <%= form_with method: :get, local: true do |f| %>  
+    <%=  f.text_field :name, value: "Name" %>
+    <%=  f.text_field :city, value: "City"%>
+    <%= f.text_field :state, value: "State" %>
+    <%= f.submit "Search for Markets" %>
+  <% end %>
+  <br>
+  <% if @markets %>
+  <%= "#{@markets.count} Search Results for " %>
+  <%= "name=#{@name}" if @name %><%= ", " if @name && @city %>
+  <%= "city=#{@city} and" if @city %>
+  <%= "state=#{@state}" if @state %>
+  <%= ":" %> <br>
+  <br>
+
+    <% @markets.each do |market| %>
+      <%= link_to "#{market.name}", "/markets/#{market.id}" %> 
+      <%= button_to "Add Market" %> <br>
+    <% end %>
+  <% end %>

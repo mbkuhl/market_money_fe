@@ -16,4 +16,14 @@ class MarketsFacade
     MarketObject.new(market_json[:data], true)
   end
 
+  def market_search(params)
+    market_service = MarketService.new
+    query = "?city=#{params[:city]}&state=#{params[:state]}&name=#{params[:name]}"
+    markets_json = market_service.search_markets(query)
+
+    markets_json[:data].map do |market|
+      MarketObject.new(market)
+    end
+  end
+
 end
